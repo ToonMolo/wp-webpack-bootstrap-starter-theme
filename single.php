@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
- * @package wp-webpack-bootstrap-starter-theme
+ * @package kredis-theme
  */
 
 get_header();

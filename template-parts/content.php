@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package wp-webpack-bootstrap-starter-theme
+ * @package kredis-theme
  */
 
 ?>
@@ -22,21 +22,21 @@
 			?>
 			<div class="entry-meta">
 				<?php
-				wp_webpack_bootstrap_starter_theme_posted_on();
-				wp_webpack_bootstrap_starter_theme_posted_by();
+				kredis_theme_posted_on();
+				kredis_theme_posted_by();
 				?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<?php wp_webpack_bootstrap_starter_theme_post_thumbnail(); ?>
+	<?php kredis_theme_post_thumbnail(); ?>
 
 	<div class="entry-content">
 		<?php
 		the_content( sprintf(
 			wp_kses(
 				/* translators: %s: Name of current post. Only visible to screen readers */
-				__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'wp-webpack-bootstrap-starter-theme' ),
+				__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'kredis-theme' ),
 				array(
 					'span' => array(
 						'class' => array(),
@@ -47,13 +47,13 @@
 		) );
 
 		wp_link_pages( array(
-			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'wp-webpack-bootstrap-starter-theme' ),
+			'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'kredis-theme' ),
 			'after'  => '</div>',
 		) );
 		?>
 	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
-		<?php wp_webpack_bootstrap_starter_theme_entry_footer(); ?>
+		<?php kredis_theme_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
 </article><!-- #post-<?php the_ID(); ?> -->

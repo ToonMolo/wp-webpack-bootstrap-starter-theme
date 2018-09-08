@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package wp-webpack-bootstrap-starter-theme
+ * @package kredis-theme
  */
 
 if ( ! is_active_sidebar( 'sidebar-1' ) ) {

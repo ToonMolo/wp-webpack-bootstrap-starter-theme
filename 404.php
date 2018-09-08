@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Creating_an_Error_404_Page
  *
- * @package wp-webpack-bootstrap-starter-theme
+ * @package kredis-theme
  */
 
 get_header();
@@ -15,11 +15,11 @@ get_header();
 
 			<section class="error-404 not-found">
 				<header class="page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'wp-webpack-bootstrap-starter-theme' ); ?></h1>
+					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'kredis-theme' ); ?></h1>
 				</header><!-- .page-header -->
 
 				<div class="page-content">
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'wp-webpack-bootstrap-starter-theme' ); ?></p>
+					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'kredis-theme' ); ?></p>
 
 					<?php
 					get_search_form();
@@ -28,7 +28,7 @@ get_header();
 					?>
 
 					<div class="widget widget_categories">
-						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'wp-webpack-bootstrap-starter-theme' ); ?></h2>
+						<h2 class="widget-title"><?php esc_html_e( 'Most Used Categories', 'kredis-theme' ); ?></h2>
 						<ul>
 							<?php
 							wp_list_categories( array(
@@ -44,8 +44,8 @@ get_header();
 
 					<?php
 					/* translators: %1$s: smiley */
-					$wp_webpack_bootstrap_starter_theme_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'wp-webpack-bootstrap-starter-theme' ), convert_smilies( ':)' ) ) . '</p>';
-					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$wp_webpack_bootstrap_starter_theme_archive_content" );
+					$kredis_theme_archive_content = '<p>' . sprintf( esc_html__( 'Try looking in the monthly archives. %1$s', 'kredis-theme' ), convert_smilies( ':)' ) ) . '</p>';
+					the_widget( 'WP_Widget_Archives', 'dropdown=1', "after_title=</h2>$kredis_theme_archive_content" );
 
 					the_widget( 'WP_Widget_Tag_Cloud' );
 					?>

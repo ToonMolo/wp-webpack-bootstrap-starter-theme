@@ -1,8 +1,8 @@
 <?php
 /**
- * wp-webpack-bootstrap-starter-theme Theme Customizer
+ * kredis-theme Theme Customizer
  *
- * @package wp-webpack-bootstrap-starter-theme
+ * @package kredis-theme
  */
 
 /**
@@ -10,7 +10,7 @@
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
  */
-function wp_webpack_bootstrap_starter_theme_customize_register( $wp_customize ) {
+function kredis_theme_customize_register( $wp_customize ) {
 	$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
 	$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
 	$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
@@ -18,22 +18,22 @@ function wp_webpack_bootstrap_starter_theme_customize_register( $wp_customize ) 
 	if ( isset( $wp_customize->selective_refresh ) ) {
 		$wp_customize->selective_refresh->add_partial( 'blogname', array(
 			'selector'        => '.site-title a',
-			'render_callback' => 'wp_webpack_bootstrap_starter_theme_customize_partial_blogname',
+			'render_callback' => 'kredis_theme_customize_partial_blogname',
 		) );
 		$wp_customize->selective_refresh->add_partial( 'blogdescription', array(
 			'selector'        => '.site-description',
-			'render_callback' => 'wp_webpack_bootstrap_starter_theme_customize_partial_blogdescription',
+			'render_callback' => 'kredis_theme_customize_partial_blogdescription',
 		) );
 	}
 }
-add_action( 'customize_register', 'wp_webpack_bootstrap_starter_theme_customize_register' );
+add_action( 'customize_register', 'kredis_theme_customize_register' );
 
 /**
  * Render the site title for the selective refresh partial.
  *
  * @return void
  */
-function wp_webpack_bootstrap_starter_theme_customize_partial_blogname() {
+function kredis_theme_customize_partial_blogname() {
 	bloginfo( 'name' );
 }
 
@@ -42,14 +42,14 @@ function wp_webpack_bootstrap_starter_theme_customize_partial_blogname() {
  *
  * @return void
  */
-function wp_webpack_bootstrap_starter_theme_customize_partial_blogdescription() {
+function kredis_theme_customize_partial_blogdescription() {
 	bloginfo( 'description' );
 }
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
-function wp_webpack_bootstrap_starter_theme_customize_preview_js() {
-	wp_enqueue_script( 'wp-webpack-bootstrap-starter-theme-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20151215', true );
+function kredis_theme_customize_preview_js() {
+	wp_enqueue_script( 'kredis-theme-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), '20151215', true );
 }
-add_action( 'customize_preview_init', 'wp_webpack_bootstrap_starter_theme_customize_preview_js' );
+add_action( 'customize_preview_init', 'kredis_theme_customize_preview_js' );

@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package wp-webpack-bootstrap-starter-theme
+ * @package kredis-theme
  */
 
 ?>
@@ -22,37 +22,33 @@
 
 <body <?php body_class(); ?>>
 <div id="page" class="site">
-	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'wp-webpack-bootstrap-starter-theme' ); ?></a>
-
 	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$wp_webpack_bootstrap_starter_theme_description = get_bloginfo( 'description', 'display' );
-			if ( $wp_webpack_bootstrap_starter_theme_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $wp_webpack_bootstrap_starter_theme_description; /* WPCS: xss ok. */ ?></p>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
+    <nav class="navbar navbar-main navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand" href="<?php echo esc_url( home_url( '/' )); ?>" title="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+          <?php echo esc_attr( get_bloginfo( 'name' ) ); ?>
+        </a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu-main" aria-controls="menu-main" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i> Menu
+        </button>
 
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'wp-webpack-bootstrap-starter-theme' ); ?></button>
-			<?php
-			wp_nav_menu( array(
-				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-			) );
-			?>
-		</nav><!-- #site-navigation -->
+        <?php
+          wp_nav_menu([
+            'menu'            => 'Primary',
+            'theme_location'  => 'menu-1',
+            'container'       => 'div',
+            'container_id'    => 'menu-main',
+            'container_class' => 'collapse navbar-collapse',
+            'menu_id'         => 'primary-menu',
+            'menu_class'      => 'navbar-nav mr-auto',
+            'depth'           => 2,
+            'fallback_cb'     => 'bootstrapNavigation::fallback',
+            'walker'          => new bootstrapNavigation()
+          ]);
+        ?>
+      </div>
+    </nav>
 	</header><!-- #masthead -->
 
 	<div id="content" class="site-content">

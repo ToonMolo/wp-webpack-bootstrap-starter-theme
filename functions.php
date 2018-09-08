@@ -1,13 +1,13 @@
 <?php
 /**
- * wp-webpack-bootstrap-starter-theme functions and definitions
+ * kredis-theme functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package wp-webpack-bootstrap-starter-theme
+ * @package kredis-theme
  */
 
-if ( ! function_exists( 'wp_webpack_bootstrap_starter_theme_setup' ) ) :
+if ( ! function_exists( 'kredis_theme_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -15,14 +15,14 @@ if ( ! function_exists( 'wp_webpack_bootstrap_starter_theme_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function wp_webpack_bootstrap_starter_theme_setup() {
+	function kredis_theme_setup() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
-		 * If you're building a theme based on wp-webpack-bootstrap-starter-theme, use a find and replace
-		 * to change 'wp-webpack-bootstrap-starter-theme' to the name of your theme in all the template files.
+		 * If you're building a theme based on kredis-theme, use a find and replace
+		 * to change 'kredis-theme' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'wp-webpack-bootstrap-starter-theme', get_template_directory() . '/languages' );
+		load_theme_textdomain( 'kredis-theme', get_template_directory() . '/languages' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
@@ -44,7 +44,7 @@ if ( ! function_exists( 'wp_webpack_bootstrap_starter_theme_setup' ) ) :
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'wp-webpack-bootstrap-starter-theme' ),
+			'menu-1' => esc_html__( 'Primary', 'kredis-theme' ),
 		) );
 
 		/*
@@ -60,7 +60,7 @@ if ( ! function_exists( 'wp_webpack_bootstrap_starter_theme_setup' ) ) :
 		) );
 
 		// Set up the WordPress core custom background feature.
-		add_theme_support( 'custom-background', apply_filters( 'wp_webpack_bootstrap_starter_theme_custom_background_args', array(
+		add_theme_support( 'custom-background', apply_filters( 'kredis_theme_custom_background_args', array(
 			'default-color' => 'ffffff',
 			'default-image' => '',
 		) ) );
@@ -81,7 +81,7 @@ if ( ! function_exists( 'wp_webpack_bootstrap_starter_theme_setup' ) ) :
 		) );
 	}
 endif;
-add_action( 'after_setup_theme', 'wp_webpack_bootstrap_starter_theme_setup' );
+add_action( 'after_setup_theme', 'kredis_theme_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -90,47 +90,45 @@ add_action( 'after_setup_theme', 'wp_webpack_bootstrap_starter_theme_setup' );
  *
  * @global int $content_width
  */
-function wp_webpack_bootstrap_starter_theme_content_width() {
+function kredis_theme_content_width() {
 	// This variable is intended to be overruled from themes.
 	// Open WPCS issue: {@link https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards/issues/1043}.
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
-	$GLOBALS['content_width'] = apply_filters( 'wp_webpack_bootstrap_starter_theme_content_width', 640 );
+	$GLOBALS['content_width'] = apply_filters( 'kredis_theme_content_width', 640 );
 }
-add_action( 'after_setup_theme', 'wp_webpack_bootstrap_starter_theme_content_width', 0 );
+add_action( 'after_setup_theme', 'kredis_theme_content_width', 0 );
 
 /**
  * Register widget area.
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-function wp_webpack_bootstrap_starter_theme_widgets_init() {
+function kredis_theme_widgets_init() {
 	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'wp-webpack-bootstrap-starter-theme' ),
+		'name'          => esc_html__( 'Sidebar', 'kredis-theme' ),
 		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'wp-webpack-bootstrap-starter-theme' ),
+		'description'   => esc_html__( 'Add widgets here.', 'kredis-theme' ),
 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
 		'after_widget'  => '</section>',
 		'before_title'  => '<h2 class="widget-title">',
 		'after_title'   => '</h2>',
 	) );
 }
-add_action( 'widgets_init', 'wp_webpack_bootstrap_starter_theme_widgets_init' );
+add_action( 'widgets_init', 'kredis_theme_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
  */
-function wp_webpack_bootstrap_starter_theme_scripts() {
-	wp_enqueue_style( 'wp-webpack-bootstrap-starter-theme-style', get_stylesheet_uri() );
+function kredis_theme_scripts() {
+	wp_enqueue_style( 'theme-style', get_stylesheet_directory_uri() . '/dist/style.min.css' );
 
-	wp_enqueue_script( 'wp-webpack-bootstrap-starter-theme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
-
-	wp_enqueue_script( 'wp-webpack-bootstrap-starter-theme-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_script( 'theme-js', get_template_directory_uri() . '/dist/theme.min.js', array('jquery'), '1.0.0', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'wp_webpack_bootstrap_starter_theme_scripts' );
+add_action( 'wp_enqueue_scripts', 'kredis_theme_scripts' );
 
 /**
  * Implement the Custom Header feature.
@@ -148,14 +146,11 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/template-functions.php';
 
 /**
- * Customizer additions.
+ * Bootstrap navigation.
  */
-require get_template_directory() . '/inc/customizer.php';
+require get_template_directory() . '/inc/bootstrap-navigation.php';
 
 /**
- * Load Jetpack compatibility file.
+ * Bootstrap pagination.
  */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
-}
-
+require get_template_directory() . '/inc/bootstrap-pagination.php';
